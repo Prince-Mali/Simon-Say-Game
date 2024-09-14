@@ -1,26 +1,45 @@
 let gameSeq = [];
 let userSeq = [];
-
 let btns = ["red", "green", "blue", "yellow"];
 
 let started = false;
 let level = 0;
 
 let h2 = document.querySelector("h2");
-
 let h3 = document.querySelector("h3");
+let startBtn = document.querySelector('#start-btn');
+let restartBtn = document.querySelector('#restart-btn');
+
 let highScore = 0;
 
-document.addEventListener("keypress", function (){
-    if(started == false){
-        console.log("Game is started!");
-        started = true;
+if(startBtn.style.display != 'none') {
+    restartBtn.style.display = 'none';
+};
 
-        levelup();
-    }
+startBtn.addEventListener('click', function() {
+    if(started == false) {
+        console.log('Game is started!');
+        setTimeout(() => {
+            started = true;
+            levelup();
+            startBtn.style.display = 'none';
+            restartBtn.style.display = 'inline';
+        }, 250)
+    };
 });
 
+restartBtn.addEventListener('click', function() {
+    reset();    
+    if(started == false) {
+        console.log('Game is started!');
+        setTimeout(() => {
+            started = true;
+            levelup();
+        }, 500)
+    };
+});
 
+// game-click-flash ---
 function gameflash(btn){
     btn.classList.add("gameflash");
     setTimeout(() => {
@@ -28,6 +47,7 @@ function gameflash(btn){
     }, 250);
 }
 
+// user-click-flash --
 function userflash(btn){
     btn.classList.add("userflash");
     setTimeout(() => {
@@ -35,6 +55,7 @@ function userflash(btn){
     }, 250);
 }
 
+// game-level-up function ---
 function levelup(){
     userSeq = [];
     level++;
@@ -76,10 +97,12 @@ function checkSeq(idx) {
         if(highScore<level){
             highScore = level;
         }
+        restartBtn.style.display = 'inline';
+        startBtn.style.display = 'none';
         h3.innerText = `Your highest Score is ${highScore}`;
         h2.innerText = `Game is Over!!! 
         Your score was ${level}.
-        press Any key to start the game.`;
+        press Restart to start the game again!`;
         reset();
     }
 }
@@ -90,3 +113,4 @@ function reset(){
     gameSeq = [];
     userSeq = [];
 }
+

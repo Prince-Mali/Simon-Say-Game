@@ -13,6 +13,11 @@ body{
     border: 5px solid black;
     border-radius: 15px;
     margin: 2px;
+    cursor: pointer;
+}
+
+.btn:hover {
+    opacity: 0.8;
 }
 
 .red{
@@ -37,4 +42,17 @@ body{
 
 .userflash{
     background-color: aquamarine;
+}
+
+.start {
+    margin-top: 2rem;
+}
+
+button {
+    padding: 0.5rem;
+    background-color: brown;
+    color: white;
+    font-weight: 700;
+    border-radius: 5px;
+    cursor: pointer;
 }
